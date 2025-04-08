@@ -25,11 +25,17 @@ function create() {
   //after loading the image now rendering the image on canvas , for this use .add.sprit() function; 
   //  The first two parameters are the top and left positions on the screen and
   //  the third one is the name of the asset we defined earlier.
-  ball = game.add.sprite(40, 50, 'ball');
+  
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  ball = game.add.sprite(50, 50, 'ball');
+  game.physics.enable(ball, Phaser.Physics.ARCADE);
+  ball.body.collideWorldBounds= true; 
+  ball.body.bounce.set(1);
+  ball.body.velocity.set(150, 150);
 }
 
 //moving the ball into the screen; 
 function update() {
-  ball.x+=1
-  ball.y+=1
+  // ball.x+=1
+  // ball.y+=1
 }

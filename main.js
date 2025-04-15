@@ -1,41 +1,50 @@
-//creating a game variable ,and assining the width, height
 var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
-  preload: preload, create: create, update: update
+ preload:preload, create:create, update:update
 });
-
-//loading asset and priting them on screen ; 
+//DEFINING THE GLOBAL VARIABLE; 
 var ball; 
+var paddle ; 
 
-
-
-
-function preload() {
-  //  to scale the canvas as full width and height without making its size ratio untouchable; 
-game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-game.scale.pageAlignHorizontally = true;
-game.scale.pageAlignVertically = true;
-// for making background; 
-game.stage.backgroundColor = '#eee';
-// using for loading the image in canvas ; 
-game.load.image('ball', './ball.png');
-}
-
-
-function create() {
-  //after loading the image now rendering the image on canvas , for this use .add.sprit() function; 
-  //  The first two parameters are the top and left positions on the screen and
-  //  the third one is the name of the asset we defined earlier.
+//preloading of anything in canvas can we done here, 
+function preload(){
+  game.scale.scaleMode=Phaser.ScaleManager.SHOW_ALL;
   
-  game.physics.startSystem(Phaser.Physics.ARCADE);
-  ball = game.add.sprite(50, 50, 'ball');
-  game.physics.enable(ball, Phaser.Physics.ARCADE);
-  ball.body.collideWorldBounds= true; 
-  ball.body.bounce.set(1);
-  ball.body.velocity.set(150, 150);
+  game.scale.pageAlignHorizontally =true; 
+  
+  game.scale.pageAlignVertically = true ; 
+
+  game.stage.backgroundColor = "#eee"
+
+  // game.load.image("ball",'./img/ball.png')
+  game.load.image('ball', './img/ball.png'); //loading image 
+
+  // game.load.image('paddle','./img/PADDLE.png')
+  game.load.image('paddle', './img/PADDLE.png');
+  
+
+}
+function create(){
+  //add.sprite()is used to render the thing on canvas ; 
+ball = game.add.sprite(50, 50 , 'ball')
+//starting arcade physics in game ; 
+game.physics.startSystem(Phaser.Physics.ARCADE)
+//putting this thing(physic ) into the ball ; 
+game.physics.enable(ball,Phaser.Physics.ARCADE)
+//saying to take canvas ball as an boundary ; 
+ball.body.collideWorldBounds = true;
+//making ball bounce ; 
+ball.body.bounce.set(1)
+ball.body.velocity.set(150, 150)
+
+
+//DISPLAYING paddle on the canvas; 
+game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle')
 }
 
-//moving the ball into the screen; 
-function update() {
-  // ball.x+=1
-  // ball.y+=1
+
+function update(){
+  //used to update the position on the screen, 
+  // ball.x+=1; 
+  // ball.y+=1; 
+
 }
